@@ -189,7 +189,7 @@ public class MainActivity extends RobotActivity {
         BarcodeEncoder encoder = new BarcodeEncoder();
         try {
             Bitmap bit = encoder.encodeBitmap(ip, BarcodeFormat.QR_CODE,
-                    500, 500);
+                    400, 400);
             qrCode.setImageBitmap(bit);
         } catch (WriterException e) {
             e.printStackTrace();
@@ -381,14 +381,12 @@ public class MainActivity extends RobotActivity {
 
         @Override
         public void run() {
-            displayToast("setClientCount");
+
             if (isConnected) {
-                displayToast("++");
                 clientCount ++;//client 連線數量+1
                 clientCountText.setText(String.valueOf(clientCount));
                 clientCountText.setTextColor(Color.parseColor("#66ff33"));
             } else {
-                displayToast("--");
                 clientCount --;//client 連線數量-1
                 clientCountText.setText(String.valueOf(clientCount));
                 clientCountText.setTextColor(Color.parseColor("#ff0066"));
@@ -402,7 +400,7 @@ public class MainActivity extends RobotActivity {
         public void onResult(int cmd, int serial, RobotErrorCode err_code, Bundle result) {
             super.onResult(cmd, serial, err_code, result);
 
-            Log.d("RobotDevSample", "onResult:"
+            Log.d("ZenboServer", "onResult:"
                     + RobotCommand.getRobotCommand(cmd).name()
                     + ", serial:" + serial + ", err_code:" + err_code
                     + ", result:" + result.getString("RESULT"));
