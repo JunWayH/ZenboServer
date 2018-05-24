@@ -1,6 +1,7 @@
 package com.zenbo.patrickc.zenboserver;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -11,6 +12,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +21,9 @@ import com.asus.robotframework.API.RobotCallback;
 import com.asus.robotframework.API.RobotCmdState;
 import com.asus.robotframework.API.RobotCommand;
 import com.asus.robotframework.API.RobotErrorCode;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.robot.asus.robotactivity.RobotActivity;
 import org.json.JSONObject;
 
@@ -46,7 +51,7 @@ public class MainActivity extends RobotActivity {
 
     //使用port 為60060
     private static int serverPort = 60060;
-    private static int clientCount = 0;//預設連線樹為0
+    private int clientCount = 0;//預設連線樹為0
     private static ServerSocket serverSocket;
     public static Handler handler = new Handler();
     Thread mainServerThread;
@@ -57,13 +62,13 @@ public class MainActivity extends RobotActivity {
         setContentView(R.layout.activity_main);
 
         //findViewById
-        ip = findViewById(R.id.ipText);
-        hostIp = findViewById(R.id.ipText2);
-        mac = findViewById(R.id.macText);
-        serverState = findViewById(R.id.serverStateText);
-        receiveMessage = findViewById(R.id.receiveText);
-        clientCountText = findViewById(R.id.clientCountText);
-        refreshButton = findViewById(R.id.refreshButton);
+        ip = (TextView) findViewById(R.id.ipText);
+        hostIp = (TextView) findViewById(R.id.ipText2);
+        mac = (TextView)findViewById(R.id.macText);
+        serverState = (TextView) findViewById(R.id.serverStateText);
+        receiveMessage = (TextView) findViewById(R.id.receiveText);
+        clientCountText = (TextView) findViewById(R.id.clientCountText);
+        refreshButton = (Button) findViewById(R.id.refreshButton);
 
         //將ip的TextView 更改為目前的IP
         ip.setText(getWIFILocalIpAdress(this));
@@ -73,6 +78,9 @@ public class MainActivity extends RobotActivity {
 
         //將mac的TextView更改為目前的MAC
         mac.setText(getMacAddress(this));
+
+        //顯示當前IP 的QR CODE
+        setQRCode(getWIFILocalIpAdress(this));
 
         //用一個 Thread 開始執行 主要的 Socket Server
         displayToast("Server Start");
@@ -92,6 +100,9 @@ public class MainActivity extends RobotActivity {
 
                 //將mac的TextView更改為目前的MAC
                 mac.setText(getMacAddress(MainActivity.this));
+
+                //顯示當前IP 的QR CODE
+                setQRCode(getWIFILocalIpAdress(MainActivity.this));
                 displayToast("重新整理");
 
             }
@@ -169,6 +180,21 @@ public class MainActivity extends RobotActivity {
 
         }
         return null;
+    }
+
+    //顯示當前 IP 的 QR Code
+    public void setQRCode(String ip) {
+        ImageView qrCode = (ImageView) findViewById(R.id.qrCode);
+
+        BarcodeEncoder encoder = new BarcodeEncoder();
+        try {
+            Bitmap bit = encoder.encodeBitmap(ip, BarcodeFormat.QR_CODE,
+                    500, 500);
+            qrCode.setImageBitmap(bit);
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+
     }
 
     //更新從Client收到的訊息，並且顯示在layout上
@@ -355,13 +381,16 @@ public class MainActivity extends RobotActivity {
 
         @Override
         public void run() {
+            displayToast("setClientCount");
             if (isConnected) {
+                displayToast("++");
                 clientCount ++;//client 連線數量+1
-                clientCountText.setText(clientCount);
+                clientCountText.setText(String.valueOf(clientCount));
                 clientCountText.setTextColor(Color.parseColor("#66ff33"));
             } else {
+                displayToast("--");
                 clientCount --;//client 連線數量-1
-                clientCountText.setText(clientCount);
+                clientCountText.setText(String.valueOf(clientCount));
                 clientCountText.setTextColor(Color.parseColor("#ff0066"));
             }
         }
