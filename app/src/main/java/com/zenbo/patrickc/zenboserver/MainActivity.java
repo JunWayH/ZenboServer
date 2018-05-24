@@ -57,13 +57,13 @@ public class MainActivity extends RobotActivity {
         setContentView(R.layout.activity_main);
 
         //findViewById
-        ip = (TextView) findViewById(R.id.ipText);
-        hostIp = (TextView) findViewById(R.id.ipText2);
-        mac = (TextView) findViewById(R.id.macText);
-        serverState = (TextView) findViewById(R.id.serverStateText);
-        receiveMessage = (TextView) findViewById(R.id.receiveText);
-        clientCountText = (TextView) findViewById(R.id.clientCountText);
-        refreshButton = (Button) findViewById(R.id.refreshButton);
+        ip = findViewById(R.id.ipText);
+        hostIp = findViewById(R.id.ipText2);
+        mac = findViewById(R.id.macText);
+        serverState = findViewById(R.id.serverStateText);
+        receiveMessage = findViewById(R.id.receiveText);
+        clientCountText = findViewById(R.id.clientCountText);
+        refreshButton = findViewById(R.id.refreshButton);
 
         //將ip的TextView 更改為目前的IP
         ip.setText(getWIFILocalIpAdress(this));
@@ -75,6 +75,7 @@ public class MainActivity extends RobotActivity {
         mac.setText(getMacAddress(this));
 
         //用一個 Thread 開始執行 主要的 Socket Server
+        displayToast("Server Start");
         mainServerThread = new Thread(runServer);
         mainServerThread.start();
 
@@ -91,6 +92,7 @@ public class MainActivity extends RobotActivity {
 
                 //將mac的TextView更改為目前的MAC
                 mac.setText(getMacAddress(MainActivity.this));
+                displayToast("重新整理");
 
             }
         });
@@ -107,7 +109,7 @@ public class MainActivity extends RobotActivity {
 
     //用來得到 Mac Address
     public static String getMacAddress(Context mContext) {
-        String macStr = "";
+        String macStr;
         WifiManager wifiManager = (WifiManager) mContext
                 .getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();

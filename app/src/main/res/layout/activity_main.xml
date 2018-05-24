@@ -11,10 +11,11 @@
         android:id="@+id/ip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginStart="272dp"
+        android:layout_marginTop="108dp"
         android:text="IP"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,81 +23,86 @@
         android:id="@+id/ipText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
+        android:layout_marginStart="172dp"
 
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="8dp"
         android:text="000.000.000.000"
         android:textAppearance="@android:style/TextAppearance.Holo"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/ipText" />
 
     <TextView
         android:id="@+id/ipText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
+        android:layout_marginStart="172dp"
 
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="8dp"
         android:text="000.000.000.000"
         android:textAppearance="@android:style/TextAppearance.Holo"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/ip" />
 
     <TextView
         android:id="@+id/mac"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="156dp"
+        android:layout_marginStart="248dp"
+        android:layout_marginTop="76dp"
         android:text="MAC"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/ipText2" />
 
     <TextView
         android:id="@+id/macText"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginStart="120dp"
+        android:layout_marginStart="160dp"
 
-        android:layout_marginTop="196dp"
+        android:layout_marginTop="28dp"
         android:text="XXX-XXX-XXX-XXX"
         android:textAppearance="@android:style/TextAppearance.Holo"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/mac" />
 
     <TextView
         android:id="@+id/receiveTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="260dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginEnd="228dp"
+        android:layout_marginTop="32dp"
         android:text="收到的訊息"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clientCountText" />
 
     <TextView
         android:id="@+id/receiveText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="308dp"
-        android:layout_marginTop="24dp"
-        android:text="A"
+        android:layout_marginEnd="292dp"
+        android:layout_marginTop="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/receiveTextView" />
 
     <TextView
         android:id="@+id/serverStateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="416dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="908dp"
+        android:layout_marginTop="32dp"
         android:text="Server Off"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@color/colorAccent"
-        android:textSize="18sp"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/serverState" />
 
@@ -104,32 +110,35 @@
         android:id="@+id/clientCountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="448dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="292dp"
+        android:layout_marginTop="36dp"
         android:text="0"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/colorAccent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clientState" />
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clientCount" />
 
     <Button
         android:id="@+id/refreshButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="228dp"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="520dp"
         android:text="重新整理"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/clientState"
+        android:id="@+id/clientCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="400dp"
-        android:layout_marginTop="16dp"
-        android:text="Client state"
+        android:layout_marginStart="864dp"
+        android:layout_marginTop="44dp"
+        android:text="Client count"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/serverStateText" />
 
@@ -137,11 +146,12 @@
         android:id="@+id/serverState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="396dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginEnd="200dp"
+        android:layout_marginTop="164dp"
         android:text="Server state"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
