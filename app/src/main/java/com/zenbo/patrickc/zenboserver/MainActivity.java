@@ -51,7 +51,7 @@ public class MainActivity extends RobotActivity {
 
     //使用port 為60060
     private static int serverPort = 60060;
-    private int clientCount = 0;//預設連線樹為0
+    private int clientCount = 0;//預設連線數為0
     private static ServerSocket serverSocket;
     public static Handler handler = new Handler();
     Thread mainServerThread;
@@ -335,7 +335,7 @@ public class MainActivity extends RobotActivity {
     }
 
     //用來顯示吐司的 method
-    private void displayToast(String toastString){
+    public void displayToast(String toastString){
         Message msg = new Message();
         msg.obj = toastString;
         toastHandler.sendMessage(msg);
